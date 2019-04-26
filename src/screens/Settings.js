@@ -1,41 +1,16 @@
-import React from 'react'
-import { 
-  View, 
-  Text, 
+import React from 'react';
+import {
+  View,
+  Text,
   StyleSheet,
   FlatList,
-  TouchableOpacity
-} from 'react-native'
+  TouchableOpacity,
+} from 'react-native';
 
-import { theme, themes } from '../core/themeProvider'
-
-SettingsScreen = () => {
-  renderItem = ({ item }) => (
-    <TouchableOpacity>
-      <View
-        style={[
-          style.itemContainer,
-          {
-            backgroundColor: item.backgroundColor
-          }
-        ]}>
-
-        <Text style={[style.itemText, { color: item.color }]}>{item.key}</Text>
-      </View>
-    </TouchableOpacity>
-  )
-
-  return (
-    <FlatList
-      style={style.container}
-      ListHeaderComponent={
-        <Text style={[style.headline, { color: theme.backgroundColor }]}>Choose Your Theme</Text>
-      }
-      data={themes}
-      renderItem={renderItem}
-    />
-  )
-}
+import {
+  theme,
+  themes,
+} from '../core/themeProvider';
 
 const style = StyleSheet.create({
   container: { flex: 1 },
@@ -52,6 +27,33 @@ const style = StyleSheet.create({
     paddingLeft: 20,
   },
   itemText: { fontWeight: 'bold' },
-})
+});
 
-export default SettingsScreen
+// eslint-disable-next-line react/prop-types
+const renderItem = ({ item }) => (
+  <TouchableOpacity>
+    <View
+      style={[
+        style.itemContainer,
+        {
+          backgroundColor: item.backgroundColor,
+        },
+      ]}
+    >
+      <Text style={[style.itemText, { color: item.color }]}>{item.key}</Text>
+    </View>
+  </TouchableOpacity>
+);
+
+const SettingsScreen = () => (
+  <FlatList
+    style={style.container}
+    ListHeaderComponent={
+      <Text style={[style.headline, { color: theme.backgroundColor }]}>Choose Your Theme</Text>
+    }
+    data={themes}
+    renderItem={renderItem}
+  />
+);
+
+export default SettingsScreen;

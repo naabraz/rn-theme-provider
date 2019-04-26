@@ -1,20 +1,20 @@
-import React from 'react'
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
+import React from 'react';
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
-import TabBar from './components/TabBar'
-import MainScreen from './screens/Main'
-import SettingsScreen from './screens/Settings'
+import TabBar from './components/TabBar';
+import MainScreen from './screens/Main';
+import SettingsScreen from './screens/Settings';
 
 const TabNavigator = createBottomTabNavigator(
   {
     Main: MainScreen,
-    Settings: SettingsScreen
+    Settings: SettingsScreen,
   },
   {
-    tabBarComponent: props => <TabBar {...props} />
-  }
-)
+    tabBarComponent: props => <TabBar {...props} />,
+  },
+);
 
-const AppContainer = createAppContainer(TabNavigator)
+const AppContainer = createAppContainer(TabNavigator);
 
-export default AppContainer
+export default AppContainer;

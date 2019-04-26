@@ -1,4 +1,4 @@
-import THEMES from './themes.json'
+import THEMES from './themes.json';
 
-export const themes = THEMES
-export const theme = THEMES[1]
+export const themes = THEMES;
+export const theme = THEMES[1];
