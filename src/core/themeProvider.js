@@ -1,14 +1,46 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import THEMES from './themes.json';
 
-export const themes = THEMES;
-export const theme = THEMES[1];
+const STORAGE_KEY = 'THEME_ID';
+const ThemeContext = React.createContext();
+
+export const ThemeContextProvider = ({ children }) => {
+  const [themeID, setThemeID] = useState();
+
+  useEffect(() => {
+    (async () => {
+      const storedThemeID = await AsyncStorage.getItem(STORAGE_KEY);
+      if (storedThemeID) setThemeID(storedThemeID);
+      else setThemeID(THEMES[1].key);
+    })();
+  }, []);
+
+  return (
+    <ThemeContext.Provider value={{ themeID, setThemeID }}>
+      {themeID ? children : null}
+    </ThemeContext.Provider>
+  );
+};
 
 export function withTheme(Component) {
   return (props) => {
-    const { themes, theme } = useContext(ThemeContext);
+    const { themeID, setThemeID } = useContext(ThemeContext);
 
-    return <Component {...props} themes={themes} theme={theme} />;
+    const getTheme = id => THEMES.find(theme => theme.key === id);
+    const setTheme = (id) => {
+      AsyncStorage.setItem(STORAGE_KEY, id);
+      setThemeID(id);
+    };
+
+    return (
+      <Component
+        {...props}
+        themes={THEMES}
+        theme={getTheme(themeID)}
+        setTheme={setTheme}
+      />
+    );
   };
 }

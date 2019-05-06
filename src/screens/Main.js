@@ -5,7 +5,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { theme } from '../core/themeProvider';
+import { withTheme } from '../core/themeProvider';
 
 const style = StyleSheet.create({
   container: {
@@ -18,10 +18,10 @@ const style = StyleSheet.create({
   },
 });
 
-const MainScreen = () => (
+const MainScreen = ({ theme }) => (
   <View style={[style.container, { backgroundColor: theme.backgroundColor }]}>
     <Text style={[style.text, { color: theme.color }]}>Main Part</Text>
   </View>
 );
 
-export default MainScreen;
+export default withTheme(MainScreen);
