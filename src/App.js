@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
+import { ThemeContextProvider } from './core/themeProvider';
 import TabBar from './components/TabBar';
 import MainScreen from './screens/Main';
 import SettingsScreen from './screens/Settings';
@@ -17,4 +18,10 @@ const TabNavigator = createBottomTabNavigator(
 
 const AppContainer = createAppContainer(TabNavigator);
 
-export default AppContainer;
+const App = () => (
+  <ThemeContextProvider>
+    <AppContainer />
+  </ThemeContextProvider>
+);
+
+export default App;
