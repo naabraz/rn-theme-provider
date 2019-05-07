@@ -9,6 +9,8 @@ import {
 
 import { withTheme } from '../core/themeProvider';
 
+// @flow
+
 const style = StyleSheet.create({
   container: { flex: 1 },
   headline: {
@@ -26,21 +28,33 @@ const style = StyleSheet.create({
   itemText: { fontWeight: 'bold' },
 });
 
-const SettingsScreen = ({ theme, themes, setTheme }) => {
-  const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => setTheme(item.key)}>
-      <View
-        style={[
-          style.itemContainer,
-          {
-            backgroundColor: item.backgroundColor,
-          },
-        ]}
-      >
-        <Text style={[style.itemText, { color: item.color }]}>{item.key}</Text>
-      </View>
-    </TouchableOpacity>
-  );
+type Props = {
+  theme: Object,
+  themes: Array,
+  setTheme: Function,
+}
+
+const SettingsScreen = (props: Props) => {
+  const { theme, themes, setTheme } = props;
+
+  const renderItem = (themeItem) => {
+    const { item } = themeItem;
+
+    return (
+      <TouchableOpacity onPress={() => setTheme(item.key)}>
+        <View
+          style={[
+            style.itemContainer,
+            {
+              backgroundColor: item.backgroundColor,
+            },
+          ]}
+        >
+          <Text style={[style.itemText, { color: item.color }]}>{item.key}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <FlatList

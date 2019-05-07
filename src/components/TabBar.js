@@ -4,11 +4,17 @@ import { BottomTabBar } from 'react-navigation';
 
 import { withTheme } from '../core/themeProvider';
 
+// @flow
+
 const style = StyleSheet.create({
   label: { fontSize: 22, fontWeight: '400' },
 });
 
-const TabBar = (props) => {
+type Props = {
+  theme: Object
+}
+
+const TabBar = (props: Props) => {
   const { theme } = props;
 
   return (

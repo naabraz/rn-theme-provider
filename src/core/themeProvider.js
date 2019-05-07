@@ -6,7 +6,14 @@ import THEMES from './themes.json';
 const STORAGE_KEY = 'THEME_ID';
 const ThemeContext = React.createContext();
 
-export const ThemeContextProvider = ({ children }) => {
+// @flow
+
+type Props = {
+  children: Object
+}
+
+export const ThemeContextProvider = (props: Props) => {
+  const { children } = props;
   const [themeID, setThemeID] = useState();
 
   useEffect(() => {

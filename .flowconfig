@@ -19,6 +19,9 @@
 ; Ignore metro
 .*/node_modules/metro/.*
 
+; Ignore React Native
+.*/node_modules/react-native/.*
+
 [include]
 
 [libs]
@@ -66,4 +69,4 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
 suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 
 [version]
-^0.93.0
+^0.98.1
